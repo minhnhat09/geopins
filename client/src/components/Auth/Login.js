@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { GoogleLogin } from 'react-google-login';
 import { GraphQLClient } from 'graphql-request';
 import { ME_QUERY } from '../../graphql/queries';
+import Context from '../../context';
 
 const Login = ({ classes }) => {
+  const { dispatch } = useContext(Context);
   const onFailure = error => {
     console.error(error);
   };
@@ -16,18 +18,32 @@ const Login = ({ classes }) => {
         headers: { authorization: idToken },
       });
       const { me } = await client.request(ME_QUERY);
+      dispatch({ type: 'LOGIN_USER', payload: me });
     } catch (error) {
       onFailure(error);
     }
   };
 
   return (
-    <GoogleLogin
-      onSuccess={onSuccess}
-      onFailure={onFailure}
-      clientId="784634270654-0asamshe3b3vfrk2bkjfa0rq5gvfvnoq.apps.googleusercontent.com"
-      isSignedIn
-    />
+    <div className={classes.root}>
+      <Typography
+        component="h1"
+        variant="h3"
+        gutterBottom
+        noWrap
+        style={{ color: 'rgb(66, 133, 244)' }}
+      >
+        Welcome
+      </Typography>
+      <GoogleLogin
+        clientId="784634270654-0asamshe3b3vfrk2bkjfa0rq5gvfvnoq.apps.googleusercontent.com"
+        onSuccess={onSuccess}
+        onFailure={onFailure}
+        isSignedIn
+        buttonText="Login with Google"
+        theme="dark"
+      />
+    </div>
   );
 };
 
