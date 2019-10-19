@@ -4,7 +4,7 @@ const PinSchema = new mongoose.Schema(
   {
     title: String,
     content: String,
-    image: String,
+        image: String,
     latitude: Number,
     longitude: Number,
     author: { type: mongoose.Schema.ObjectId, ref: 'User' },
