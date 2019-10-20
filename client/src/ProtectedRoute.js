@@ -5,7 +5,6 @@ import Context from './context';
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
   const { state } = useContext(Context);
-  console.log(state);
   return (
     <Route
       render={props => (!state.isAuth ? <Redirect to="/login" /> : <Component {...props} />)}
