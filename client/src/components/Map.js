@@ -1,10 +1,11 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 // import Button from "@material-ui/core/Button";
 // import Typography from "@material-ui/core/Typography";
 // import DeleteIcon from "@material-ui/icons/DeleteTwoTone";
-import ReactMapGL from 'react-map-gl';
+import ReactMapGL, { NavigationControl } from 'react-map-gl';
 
 const INITIAL_VIEWPORT = {
   latitude: 48.81333923736466,
@@ -23,7 +24,11 @@ const Map = ({ classes }) => {
         mapboxApiAccessToken="pk.eyJ1IjoibWluaG5oYXQwOSIsImEiOiJjazFlcW83bG0wazY4M2psbTVoMGkxNHJrIn0.ct4HmPBekg3vEk737vffLw"
         onViewportChange={newViewport => setViewport(newViewport)}
         {...viewport}
-      />
+      >
+        <div className={classes.navigationControl}>
+          <NavigationControl onViewportChange={newViewport => setViewport(newViewport)} />
+        </div>
+      </ReactMapGL>
     </div>
   );
 };
