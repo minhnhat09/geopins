@@ -10,6 +10,7 @@ import { withStyles } from '@material-ui/core/styles';
 import ReactMapGL, { NavigationControl, Marker } from 'react-map-gl';
 import PinIcon from './PinIcon';
 import Context from '../context';
+import Blog from './Blog';
 
 const INITIAL_VIEWPORT = {
   latitude: 48.81333923736466,
@@ -82,6 +83,8 @@ const Map = ({ classes }) => {
           </Marker>
         )}
       </ReactMapGL>
+      {/* Blog Area to add Pin Content */}
+      <Blog />
     </div>
   );
 };
