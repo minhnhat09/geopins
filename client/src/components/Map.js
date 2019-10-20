@@ -13,6 +13,7 @@ const INITIAL_VIEWPORT = {
 };
 const Map = ({ classes }) => {
   const [viewport, setViewport] = useState(INITIAL_VIEWPORT);
+
   return (
     <div className={classes.root}>
       <ReactMapGL
